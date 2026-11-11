@@ -226,7 +226,7 @@ def build_excel_reconciliation(shipment_data, output_path):
     # Data Validation for Payment Method Dropdown
     dv_method = DataValidation(
         type="list",
-        formula1='"Cash,Online / UPI,Cheque,Signed / Udhar,Cash + Online,Cash + Signed,Cash + Cheque,Cancelled"',
+        formula1='"Cash,Online / UPI,Cheque,Signed / Udhar,Cash + Online,Cash + Signed,Cash + Cheque,Cancelled,Other Driver"',
         allow_blank=False
     )
     ws.add_data_validation(dv_method)
@@ -269,7 +269,7 @@ def build_excel_reconciliation(shipment_data, output_path):
 
         # Col L: CASH (₹)
         ws[f"L{bill_row}"] = (
-            f'=IF(J{bill_row}="Cancelled", 0, '
+            f'=IF(OR(J{bill_row}="Cancelled", J{bill_row}="Other Driver"), 0, '
             f'IF(J{bill_row}="Cash", I{bill_row}, '
             f'IF(J{bill_row}="Online / UPI", 0, '
             f'IF(J{bill_row}="Cheque", 0, '
