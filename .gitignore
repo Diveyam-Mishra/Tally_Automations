@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.env
+venv/
+ENV/
+
+# Node & Playwright
+node_modules/
+test-results/
+.playwright-artifacts-*/
+
+# Credentials & Session data
+auth.json
+**/auth.json
+*.session
+
+# Generated Import & Export XML/JSON payloads
+*.xml
+*.jsonl
+*.zip
+Haldiram/invoices_*.json
+Haldiram/sales_all_masters.xml
+Haldiram/sales_tally_import.xml
+Haldiram/tally_import.xml
+Haldiram/voucher_*_raw.xml
+Haldiram/Haldiram_Tally_Sync.zip
+
+# Runtime data & temp invoice/bill batches
+**/already_in_tally/
+**/invoices/
+**/reconciliation_sheets/
+**/creambell_bills/
+Cream-Bell/*.csv
+Cream-Bell/*.pdf
+Haldiram/*.csv
+Haldiram/*.xlsx
+
+# OS
+.DS_Store
+Thumbs.db

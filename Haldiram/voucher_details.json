@@ -1,0 +1,220 @@
+{
+  "voucher_number": "AM/S/26-27/2735",
+  "voucher_type": "Sales",
+  "date": "20261107",
+  "party_ledger": "Maa Sharda Enterprises",
+  "party_name": "Maa Sharda Enterprises",
+  "party_mailing_name": "Maa Sharda Enterprises",
+  "party_address": [
+    "102",
+    "Bicholi Hapsi Road",
+    "Indore",
+    "Indore"
+  ],
+  "party_gstin": "23AYAPK5543Q1Z5",
+  "place_of_supply": "Madhya Pradesh",
+  "state_name": "Madhya Pradesh",
+  "pincode": "452016",
+  "cmp_gstin": "23AKUPM4082G1ZW",
+  "cmp_state": "Madhya Pradesh",
+  "items": [
+    {
+      "name": "Green Apple Martini- Coctail Mixer",
+      "billed_qty": " 6.0 PCS",
+      "actual_qty": " 6.0 PCS",
+      "rate": "89.29/PCS",
+      "amount": "535.74",
+      "discount": "0",
+      "hsn": "22029920"
+    },
+    {
+      "name": "Mango Chilli Mojito - Cocktail Mixer",
+      "billed_qty": " 6.0 PCS",
+      "actual_qty": " 6.0 PCS",
+      "rate": "89.29/PCS",
+      "amount": "535.74",
+      "discount": "0",
+      "hsn": "22029920"
+    },
+    {
+      "name": "Popstar Martini Cockrail Mixer",
+      "billed_qty": " 6.0 PCS",
+      "actual_qty": " 6.0 PCS",
+      "rate": "89.29/PCS",
+      "amount": "535.74",
+      "discount": "0",
+      "hsn": "22029920"
+    },
+    {
+      "name": "Bloody Mary Cocktail Mixer",
+      "billed_qty": " 6.0 PCS",
+      "actual_qty": " 6.0 PCS",
+      "rate": "97.40/PCS",
+      "amount": "584.40",
+      "discount": "0",
+      "hsn": "22029920"
+    },
+    {
+      "name": "Cosmopolitan Cocktail Mixer",
+      "billed_qty": " 6.0 PCS",
+      "actual_qty": " 6.0 PCS",
+      "rate": "89.29/PCS",
+      "amount": "535.74",
+      "discount": "0",
+      "hsn": "22029920"
+    },
+    {
+      "name": "Margrita-Cocktail Mixer",
+      "billed_qty": " 6.0 PCS",
+      "actual_qty": " 6.0 PCS",
+      "rate": "89.17/PCS",
+      "amount": "535.02",
+      "discount": "0",
+      "hsn": "22029920"
+    },
+    {
+      "name": "Sex On the Beach - Cocktail Mixer",
+      "billed_qty": " 6.0 PCS",
+      "actual_qty": " 6.0 PCS",
+      "rate": "89.29/PCS",
+      "amount": "535.74",
+      "discount": "0",
+      "hsn": "22029920"
+    },
+    {
+      "name": "Whisckey Sour - Cocktail Mixer",
+      "billed_qty": " 6.0 PCS",
+      "actual_qty": " 6.0 PCS",
+      "rate": "89.29/PCS",
+      "amount": "535.74",
+      "discount": "0",
+      "hsn": "22029920"
+    },
+    {
+      "name": "Peach Zero Sugar",
+      "billed_qty": " 6.0 PCS",
+      "actual_qty": " 6.0 PCS",
+      "rate": "32.14/PCS",
+      "amount": "192.84",
+      "discount": "0",
+      "hsn": "22021090"
+    },
+    {
+      "name": "Orange -Zeero Sugar",
+      "billed_qty": " 6.0 PCS",
+      "actual_qty": " 6.0 PCS",
+      "rate": "32.14/PCS",
+      "amount": "192.84",
+      "discount": "0",
+      "hsn": "22021090"
+    },
+    {
+      "name": "Pineappale -Zeero Sugar",
+      "billed_qty": " 6.0 PCS",
+      "actual_qty": " 6.0 PCS",
+      "rate": "32.14/PCS",
+      "amount": "192.84",
+      "discount": "0",
+      "hsn": "22021090"
+    },
+    {
+      "name": "Vanila - Zeero Sugar",
+      "billed_qty": " 6.0 PCS",
+      "actual_qty": " 6.0 PCS",
+      "rate": "32.14/PCS",
+      "amount": "192.84",
+      "discount": "0",
+      "hsn": "22021090"
+    },
+    {
+      "name": "Cranberry N Lime Zero Sugar",
+      "billed_qty": " 6.0 PCS",
+      "actual_qty": " 6.0 PCS",
+      "rate": "32.14/PCS",
+      "amount": "192.84",
+      "discount": "0",
+      "hsn": "22021090"
+    },
+    {
+      "name": "Smoked Apple Zeero Sugar",
+      "billed_qty": " 6.0 PCS",
+      "actual_qty": " 6.0 PCS",
+      "rate": "32.14/PCS",
+      "amount": "192.84",
+      "discount": "0",
+      "hsn": "22021090"
+    },
+    {
+      "name": "Greean Apple Zero Sugar",
+      "billed_qty": " 6.0 PCS",
+      "actual_qty": " 6.0 PCS",
+      "rate": "32.14/PCS",
+      "amount": "192.84",
+      "discount": "0",
+      "hsn": "22021090"
+    },
+    {
+      "name": "Mango Passion - Zeero Sugar",
+      "billed_qty": " 6.0 PCS",
+      "actual_qty": " 6.0 PCS",
+      "rate": "32.14/PCS",
+      "amount": "192.84",
+      "discount": "0",
+      "hsn": "22021090"
+    },
+    {
+      "name": "Lime N Lemon-Zero Sugar",
+      "billed_qty": " 6.0 PCS",
+      "actual_qty": " 6.0 PCS",
+      "rate": "32.14/PCS",
+      "amount": "192.84",
+      "discount": "0",
+      "hsn": "22021090"
+    },
+    {
+      "name": "Classic Lime Lemonade",
+      "billed_qty": " 16.0 PCS",
+      "actual_qty": " 16.0 PCS",
+      "rate": "30.48/PCS",
+      "amount": "487.68",
+      "discount": "0",
+      "hsn": "22029920"
+    },
+    {
+      "name": "Strawberry Lemonade",
+      "billed_qty": " 16.0 PCS",
+      "actual_qty": " 16.0 PCS",
+      "rate": "30.48/PCS",
+      "amount": "487.68",
+      "discount": "0",
+      "hsn": "22029920"
+    },
+    {
+      "name": "Litchi Rose Lemonade",
+      "billed_qty": " 16.0 PCS",
+      "actual_qty": " 16.0 PCS",
+      "rate": "30.48/PCS",
+      "amount": "487.68",
+      "discount": "0",
+      "hsn": "22029920"
+    }
+  ],
+  "ledgers": [
+    {
+      "name": "Maa Sharda Enterprises",
+      "amount": "-8517.00"
+    },
+    {
+      "name": "CGST",
+      "amount": "492.03"
+    },
+    {
+      "name": "SGST",
+      "amount": "492.03"
+    },
+    {
+      "name": "Roundoff",
+      "amount": "0.48"
+    }
+  ]
+}
