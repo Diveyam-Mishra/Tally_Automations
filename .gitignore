@@ -37,6 +37,10 @@ Cream-Bell/*.csv
 Cream-Bell/*.pdf
 Haldiram/*.csv
 Haldiram/*.xlsx
+!SIGNED_BILLS_INPUT.xlsx
+!**/SIGNED_BILLS_INPUT.xlsx
+!HALDIRAM_DAILY_PNL_AND_OPERATIONS.xlsx
+!**/HALDIRAM_DAILY_PNL_AND_OPERATIONS.xlsx
 
 # OS
 .DS_Store

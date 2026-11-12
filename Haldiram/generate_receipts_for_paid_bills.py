@@ -237,7 +237,13 @@ def main():
         period_label = f"{args.month} (01 to {last_day:02d})"
 
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    excel_path = args.excel if os.path.isabs(args.excel) else os.path.join(script_dir, args.excel)
+    parent_dir = os.path.dirname(script_dir)
+    if os.path.isabs(args.excel):
+        excel_path = args.excel
+    elif os.path.exists(os.path.join(parent_dir, args.excel)):
+        excel_path = os.path.join(parent_dir, args.excel)
+    else:
+        excel_path = os.path.join(script_dir, args.excel)
     auth_path = os.path.join(script_dir, "auth.json")
 
     print("=" * 75)
