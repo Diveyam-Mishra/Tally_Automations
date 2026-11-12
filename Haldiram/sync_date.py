@@ -10,7 +10,7 @@ if sys.stdout.encoding != 'utf-8':
     except:
         pass
 
-def sync_single_date(date_str, limit=500):
+def sync_single_date(date_str, limit=500, tally_ip="100.103.81.73", tally_port="9000"):
     print(f"\n=============================================================")
     print(f"🚀 HALDIRAM DMS -> TALLY SYNC FOR {date_str}")
     print(f"=============================================================\n")
@@ -37,7 +37,7 @@ def sync_single_date(date_str, limit=500):
 
     # STAGE 2: Import into Tally (with automatic deduplication check)
     print(f"\n[Stage 2/2] Importing invoices from {json_path} into Tally...")
-    import_cmd = ["python", "import_sales_to_tally.py", "--json", json_path]
+    import_cmd = ["python", "import_sales_to_tally.py", "--json", json_path, "--tally-ip", tally_ip, "--tally-port", tally_port]
     res2 = subprocess.run(import_cmd)
     if res2.returncode != 0:
         print(f"❌ Stage 2 (Tally Import) encountered an error on {date_str}.")

@@ -434,7 +434,28 @@ def main():
     print(f"📈 Sales Ledger  : {args.sales_ledger}")
     print(f"=============================================================\n")
 
-    tally_url = f"http://{args.tally_ip}:{args.tally_port}/"
+    # Auto-detect Tally host if default or unreachable
+    tally_ip = args.tally_ip
+    import socket
+    def is_port_open(host, port):
+        try:
+            s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            s.settimeout(0.6)
+            res = s.connect_ex((host, int(port)))
+            s.close()
+            return res == 0
+        except:
+            return False
+
+    if not is_port_open(tally_ip, args.tally_port):
+        # Try Tailscale IP first
+        if is_port_open("100.103.81.73", args.tally_port):
+            tally_ip = "100.103.81.73"
+        elif is_port_open("127.0.0.1", args.tally_port):
+            tally_ip = "127.0.0.1"
+
+    tally_url = f"http://{tally_ip}:{args.tally_port}/"
+    print(f"🌐 Target Tally  : {tally_url}")
 
     # Step 0: Check for invoices already in Tally
     print("🔍 Checking for invoices that already exist in Tally...")
