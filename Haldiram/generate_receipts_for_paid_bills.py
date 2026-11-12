@@ -50,12 +50,49 @@ def load_signed_bill_numbers(excel_path):
 
     return signed_bills
 
+def check_auth_valid(auth_path="auth.json"):
+    if not os.path.exists(auth_path):
+        return False
+    try:
+        with open(auth_path, 'r', encoding='utf-8') as f:
+            auth_data = json.load(f)
+        cookies = {c['name']: c['value'] for c in auth_data.get('cookies', [])}
+        headers = {'User-Agent': 'Mozilla/5.0', 'Accept': 'application/json, text/plain, */*'}
+        resp = requests.get('https://dms-hsfpl.fieldassist.io/api/v1/user/profile', cookies=cookies, headers=headers, timeout=8)
+        return resp.status_code == 200
+    except:
+        return False
+
+def ensure_valid_auth(auth_path="auth.json"):
+    print("🔑 Checking FieldAssist authentication session...")
+    if check_auth_valid(auth_path):
+        print("✅ FieldAssist session is active and valid!\n")
+        return True
+
+    print("\n" + "=" * 65)
+    print("⚠️ FieldAssist login session is EXPIRED or MISSING!")
+    print("🚀 Opening Chrome browser now for one-time login...")
+    print("👉 Please log in to FieldAssist in the opened Chrome window.")
+    print("👉 Once you reach the dashboard, your session will save automatically!")
+    print("=" * 65 + "\n")
+
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    save_login_script = os.path.join(script_dir, "save_login.js")
+    import subprocess
+    res = subprocess.run(["node", save_login_script])
+    if res.returncode == 0 and check_auth_valid(auth_path):
+        print("🎉 Login successful! Resuming now...\n")
+        return True
+    else:
+        print("❌ Login was not completed or failed.")
+        return False
+
 def get_fieldassist_invoices(from_date_iso, to_date_iso, auth_path):
     """
     Fetches invoice headers from FieldAssist DMS for the target period.
     """
-    if not os.path.exists(auth_path):
-        print(f"⚠️ Auth file not found at {auth_path}. Cannot fetch from portal.")
+    if not ensure_valid_auth(auth_path):
+        print("❌ Authentication failed. Cannot fetch invoices.")
         return []
 
     with open(auth_path, 'r', encoding='utf-8') as f:
