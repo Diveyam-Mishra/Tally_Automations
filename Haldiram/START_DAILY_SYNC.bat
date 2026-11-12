@@ -1,17 +1,18 @@
 @echo off
 chcp 65001 >nul
-title Haldiram to Tally Full Auto-Sync
+title Haldiram Daily Sales Sync
 color 0A
 
 echo ============================================================
-echo   HALDIRAM TO TALLY FULL DAILY SYNC (SALES + RECEIPTS)
+echo           HALDIRAM DAILY SALES SYNC TO TALLY
 echo ============================================================
 echo.
 echo Pipeline:
 echo   [1] Auto-Checks FieldAssist login (prompts if expired)
-echo   [2] Fetches delivered invoices from portal
-echo   [3] Imports Sales Vouchers into Tally (with deduplication)
-echo   [4] Auto-Generates Receipts (excluding SIGNED_BILLS_INPUT.xlsx)
+echo   [2] Downloads delivered invoices from FieldAssist
+echo   [3] Imports Sales Vouchers into Tally (skips duplicates)
+echo.
+echo *(Receipt generation is separate via GENERATE_RECEIPTS.bat)*
 echo.
 
 :: 1. Check if Tally is running
@@ -44,7 +45,7 @@ if "%USER_DATE%"=="" (
 
 echo.
 echo ============================================================
-echo Starting Full Sync for Date: %USER_DATE%
+echo Starting Sales Sync for Date: %USER_DATE%
 echo Please wait 1 to 2 minutes...
 echo ============================================================
 echo.
@@ -56,7 +57,7 @@ if %ERRORLEVEL% equ 0 (
     color 0A
     echo.
     echo ============================================================
-    echo [SUCCESS] Sales & Receipts successfully synchronized to Tally!
+    echo [SUCCESS] Sales Invoices successfully synchronized to Tally!
     echo.
     echo Open Tally -^> Day Book (Shortcut: K) to verify your vouchers.
     echo ============================================================
