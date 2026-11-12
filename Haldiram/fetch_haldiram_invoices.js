@@ -21,7 +21,7 @@ async function fetchInvoicesForDate(targetDateStr = '01-10-2026', limit = 5) {
 
   console.log(`\n=============================================================`);
   console.log(`📦 FieldAssist DMS Invoice Fetcher`);
-  console.log(`📅 Target Date : ${targetDateStr} (From: ${fromDateIso} To: ${toDateIso})`);
+  console.log(`📅 Target Date : ${targetDateStr} (Full Day IST: 12:00 AM to 11:59 PM)`);
   console.log(`🎯 Limit       : ${limit} invoices`);
   console.log(`=============================================================\n`);
 
