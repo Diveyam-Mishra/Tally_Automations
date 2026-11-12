@@ -12,7 +12,7 @@ echo Please log into FieldAssist in the opened browser window.
 echo Once you reach the dashboard, your session will be saved!
 echo.
 
-cd /d "%~dp0"
+cd /d "%~dp0Haldiram"
 node save_login.js
 
 echo.

@@ -50,7 +50,7 @@ echo Please wait 1 to 2 minutes...
 echo ============================================================
 echo.
 
-cd /d "%~dp0"
+cd /d "%~dp0Haldiram"
 python sync_date.py %USER_DATE%
 
 if %ERRORLEVEL% equ 0 (

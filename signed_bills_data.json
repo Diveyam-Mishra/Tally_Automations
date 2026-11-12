@@ -1,0 +1,172 @@
+[
+  {
+    "billNo": "13088",
+    "invoiceNo": "IN/19136/13088",
+    "buyerFirmName": "Mahakali kirana & general",
+    "beatName": "Malviya Nagar (M.P)_Aanand Mangal_RO",
+    "amount": 2732.6,
+    "date": "2026-11-06",
+    "daysAgo": 5,
+    "itemCount": 19
+  },
+  {
+    "billNo": "13077",
+    "invoiceNo": "IN/19136/13077",
+    "buyerFirmName": "S G super market",
+    "beatName": "HFI BANGALI_Aanand Mangal_RO",
+    "amount": 1293.28,
+    "date": "2026-11-06",
+    "daysAgo": 5,
+    "itemCount": 11
+  },
+  {
+    "billNo": "12719",
+    "invoiceNo": "IN/19136/12719",
+    "buyerFirmName": "Pandit ji kirana",
+    "beatName": "Bicholi Papa Bakery(M.P)_Aanand Mangal_RO",
+    "amount": 3904.1,
+    "date": "2026-10-31",
+    "daysAgo": 11,
+    "itemCount": 37
+  },
+  {
+    "billNo": "12970",
+    "invoiceNo": "IN/19136/12970",
+    "buyerFirmName": "Abhilasha daily needs",
+    "beatName": "KANADIA GAON(Indore)_Aanand Mangal_RO",
+    "amount": 2769.18,
+    "date": "2026-11-05",
+    "daysAgo": 6,
+    "itemCount": 13
+  },
+  {
+    "billNo": "12948",
+    "invoiceNo": "IN/19136/12948",
+    "buyerFirmName": "Pankaj Agency",
+    "beatName": "KANADIA GAON(Indore)_Aanand Mangal_RO",
+    "amount": 8831.17,
+    "date": "2026-11-05",
+    "daysAgo": 6,
+    "itemCount": 21
+  },
+  {
+    "billNo": "12963",
+    "invoiceNo": "IN/19136/12963",
+    "buyerFirmName": "Pawan kirana",
+    "beatName": "KANADIA GAON(Indore)_Aanand Mangal_RO",
+    "amount": 4047.02,
+    "date": "2026-11-05",
+    "daysAgo": 6,
+    "itemCount": 21
+  },
+  {
+    "billNo": "12972",
+    "invoiceNo": "IN/19136/12972",
+    "buyerFirmName": "Yadav Provision",
+    "beatName": "KANADIA GAON(Indore)_Aanand Mangal_RO",
+    "amount": 2557.85,
+    "date": "2026-11-05",
+    "daysAgo": 6,
+    "itemCount": 25
+  },
+  {
+    "billNo": "12935",
+    "invoiceNo": "IN/19136/12935",
+    "buyerFirmName": "Anand shree provision store",
+    "beatName": "Tilak Nagar 1(M.P)_Aanand Mangal_RO",
+    "amount": 6864.19,
+    "date": "2026-11-04",
+    "daysAgo": 7,
+    "itemCount": 33
+  },
+  {
+    "billNo": "12700",
+    "invoiceNo": "IN/19136/12700",
+    "buyerFirmName": "Raj laxmi traders",
+    "beatName": "Bicholi Papa Bakery(M.P)_Aanand Mangal_RO",
+    "amount": 607.67,
+    "date": "2026-10-31",
+    "daysAgo": 11,
+    "itemCount": 4
+  },
+  {
+    "billNo": "12778",
+    "invoiceNo": "IN/19136/12778",
+    "buyerFirmName": "mahaveer provision",
+    "beatName": "Bangali Square(M.P)_Aanand Mangal_RO",
+    "amount": 1649.54,
+    "date": "2026-11-02",
+    "daysAgo": 9,
+    "itemCount": 17
+  },
+  {
+    "billNo": "12790",
+    "invoiceNo": "IN/19136/12790",
+    "buyerFirmName": "Hari Om Kirana",
+    "beatName": "Bangali Square(M.P)_Aanand Mangal_RO",
+    "amount": 6715.28,
+    "date": "2026-11-02",
+    "daysAgo": 9,
+    "itemCount": 31
+  },
+  {
+    "billNo": "12751",
+    "invoiceNo": "IN/19136/12751",
+    "buyerFirmName": "Shivani kirana",
+    "beatName": "HFI BANGALI BICHOLI HAPSI_Aanand Mangal_RO",
+    "amount": 1551.27,
+    "date": "2026-11-02",
+    "daysAgo": 9,
+    "itemCount": 3
+  },
+  {
+    "billNo": "12565",
+    "invoiceNo": "IN/19136/12565",
+    "buyerFirmName": "Shri Krishna dudh dairy",
+    "beatName": "HFI BANGALI_Aanand Mangal_RO",
+    "amount": 2645.23,
+    "date": "2026-10-30",
+    "daysAgo": 12,
+    "itemCount": 13
+  },
+  {
+    "billNo": "12566",
+    "invoiceNo": "IN/19136/12566",
+    "buyerFirmName": "Balaji Kirana",
+    "beatName": "HFI BANGALI_Aanand Mangal_RO",
+    "amount": 4304.26,
+    "date": "2026-10-30",
+    "daysAgo": 12,
+    "itemCount": 4
+  },
+  {
+    "billNo": "10111",
+    "invoiceNo": "IN/19136/10111",
+    "buyerFirmName": "New Tomar Catres",
+    "beatName": "HFI BANGALI BICHOLI HAPSI_Aanand Mangal_RO",
+    "amount": 3462.52,
+    "date": "2026-09-22",
+    "daysAgo": 50,
+    "itemCount": 20
+  },
+  {
+    "billNo": "10734",
+    "invoiceNo": "IN/19136/10734",
+    "buyerFirmName": "Aurobindo Institute Of medical",
+    "beatName": "AURBINDO (M.P)_Aanand Mangal_RO",
+    "amount": 27897.4,
+    "date": "2026-10-02",
+    "daysAgo": 40,
+    "itemCount": 16
+  },
+  {
+    "billNo": "3657",
+    "invoiceNo": "IN/19136/3657",
+    "buyerFirmName": "Aayu kirana store",
+    "beatName": "Bangali Square(M.P)_Aanand Mangal_RO",
+    "amount": 779.49,
+    "date": "2026-06-08",
+    "daysAgo": 156,
+    "itemCount": 5
+  }
+]

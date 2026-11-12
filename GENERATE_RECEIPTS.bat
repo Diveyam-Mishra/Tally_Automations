@@ -21,7 +21,7 @@ echo [STEP 1] RUNNING IN PREVIEW (DRY-RUN) MODE...
 echo ============================================================
 echo.
 
-cd /d "%~dp0"
+cd /d "%~dp0Haldiram"
 python generate_receipts_for_paid_bills.py --month %USER_MONTH%
 
 if %ERRORLEVEL% neq 0 (
