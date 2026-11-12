@@ -1,11 +1,17 @@
 @echo off
 chcp 65001 >nul
-title Haldiram to Tally Daily Sync
+title Haldiram to Tally Full Auto-Sync
 color 0A
 
 echo ============================================================
-echo        HALDIRAM BILLS TO TALLY DAILY AUTO-SYNC
+echo   HALDIRAM TO TALLY FULL DAILY SYNC (SALES + RECEIPTS)
 echo ============================================================
+echo.
+echo Pipeline:
+echo   [1] Auto-Checks FieldAssist login (prompts if expired)
+echo   [2] Fetches delivered invoices from portal
+echo   [3] Imports Sales Vouchers into Tally (with deduplication)
+echo   [4] Auto-Generates Receipts (excluding SIGNED_BILLS_INPUT.xlsx)
 echo.
 
 :: 1. Check if Tally is running
@@ -27,7 +33,7 @@ echo.
 echo For TODAY'S invoices: Press ENTER directly.
 echo For a SPECIFIC DATE  : Type the date in DD-MM-YYYY format (e.g. 03-10-2026)
 echo.
-set /p USER_DATE="Enter Date (DD-MM-YYYY) or press ENTER: "
+set /p USER_DATE="Enter Date (DD-MM-YYYY) or press ENTER for today: "
 
 if "%USER_DATE%"=="" (
     :: Get today's date in DD-MM-YYYY
@@ -38,7 +44,7 @@ if "%USER_DATE%"=="" (
 
 echo.
 echo ============================================================
-echo Starting Sync for Date: %USER_DATE%
+echo Starting Full Sync for Date: %USER_DATE%
 echo Please wait 1 to 2 minutes...
 echo ============================================================
 echo.
@@ -50,7 +56,7 @@ if %ERRORLEVEL% equ 0 (
     color 0A
     echo.
     echo ============================================================
-    echo [SUCCESS] Invoices have been successfully imported into Tally!
+    echo [SUCCESS] Sales & Receipts successfully synchronized to Tally!
     echo.
     echo Open Tally -^> Day Book (Shortcut: K) to verify your vouchers.
     echo ============================================================
@@ -58,7 +64,7 @@ if %ERRORLEVEL% equ 0 (
     color 0C
     echo.
     echo ============================================================
-    echo [WARNING] An issue occurred during sync. Please check logs.
+    echo [WARNING] An issue occurred during sync. Please check logs above.
     echo ============================================================
 )
 
