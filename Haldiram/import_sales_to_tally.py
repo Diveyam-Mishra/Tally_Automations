@@ -58,8 +58,10 @@ def escape_xml(s):
 def get_item_name(it):
     """
     Returns clean name for Tally stock item.
+    Prioritizes official catalog 'name' (matching purchase bills),
+    falling back to 'productDescription'.
     """
-    name = it.get('productDescription') or it.get('name') or "Item"
+    name = it.get('name') or it.get('productDescription') or "Item"
     return name.strip()
 
 def build_all_masters_xml(invoices, company="ANAND MANGAL_FY26-27"):

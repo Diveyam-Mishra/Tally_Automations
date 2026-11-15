@@ -1,5 +1,6 @@
 import sys
 import os
+import threading
 import paramiko
 
 # Read credentials from environment or fallback
@@ -14,12 +15,28 @@ def run_remote(command):
     try:
         ssh.connect(REMOTE_HOST, port=REMOTE_PORT, username=REMOTE_USER, password=REMOTE_PASS, timeout=15)
         stdin, stdout, stderr = ssh.exec_command(command)
-        out = stdout.read().decode('utf-8', errors='replace')
-        err = stderr.read().decode('utf-8', errors='replace')
+
+        out_chunks, err_chunks = [], []
+        def read_stream(stream, chunks):
+            try:
+                for line in iter(stream.readline, ""):
+                    chunks.append(line)
+            except Exception:
+                pass
+
+        t1 = threading.Thread(target=read_stream, args=(stdout, out_chunks))
+        t2 = threading.Thread(target=read_stream, args=(stderr, err_chunks))
+        t1.start()
+        t2.start()
+        t1.join()
+        t2.join()
+
+        out = "".join(out_chunks)
+        err = "".join(err_chunks)
         if out:
-            print(out)
+            print(out, end="")
         if err:
-            print("STDERR:", err, file=sys.stderr)
+            print(err, file=sys.stderr, end="")
         ssh.close()
     except Exception as e:
         print(f"Connection failed: {e}", file=sys.stderr)

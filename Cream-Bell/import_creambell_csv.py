@@ -141,9 +141,41 @@ def get_tally_masters(tally_url, company):
 
     return stock_items, existing_vouchers
 
-def parse_creambell_csv(csv_path, tally_stock_items):
-    with open(csv_path, 'r', encoding='utf-8', errors='ignore') as f:
-        rows = list(csv.DictReader(f))
+def parse_creambell_file(file_path, tally_stock_items):
+    ext = os.path.splitext(file_path)[1].lower()
+    rows = []
+
+    if ext in ['.xlsx', '.xlsm', '.xltx']:
+        try:
+            import openpyxl
+            wb = openpyxl.load_workbook(file_path, data_only=True)
+            sheet = wb.active
+            header = []
+            for cell in sheet[1]:
+                val = str(cell.value).strip().lower() if cell.value is not None else ""
+                header.append(val)
+            for row in sheet.iter_rows(min_row=2, values_only=True):
+                if not any(row):
+                    continue
+                r_dict = {}
+                for idx, col_name in enumerate(header):
+                    if col_name and idx < len(row):
+                        cell_val = row[idx]
+                        if isinstance(cell_val, datetime):
+                            r_dict[col_name] = cell_val.strftime('%Y-%m-%d')
+                        elif cell_val is not None:
+                            r_dict[col_name] = str(cell_val).strip()
+                        else:
+                            r_dict[col_name] = ""
+                rows.append(r_dict)
+        except Exception as e:
+            print(f"⚠️ Error reading Excel file with openpyxl: {e}")
+            rows = []
+    else:
+        with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
+            raw_rows = list(csv.DictReader(f))
+            for r in raw_rows:
+                rows.append({(k.strip().lower() if k else ''): (v.strip() if v else '') for k, v in r.items()})
 
     invoices = {}
     for r in rows:
@@ -153,8 +185,16 @@ def parse_creambell_csv(csv_path, tally_stock_items):
             
         if inv_id not in invoices:
             dt_raw = (r.get('invoice date') or '').strip()
-            # Convert 2026-10-31 to 20261031
-            tally_date = dt_raw.replace('-', '') if dt_raw else datetime.now().strftime('%Y%m%d')
+            # Convert 2026-10-31 or 02-11-2026 to YYYYMMDD
+            tally_date = datetime.now().strftime('%Y%m%d')
+            if dt_raw:
+                cleaned_dt = dt_raw.replace('/', '-').strip()
+                parts = cleaned_dt.split('-')
+                if len(parts) == 3:
+                    if len(parts[0]) == 4: # YYYY-MM-DD
+                        tally_date = f"{parts[0]}{parts[1].zfill(2)}{parts[2].zfill(2)}"
+                    elif len(parts[2]) == 4: # DD-MM-YYYY
+                        tally_date = f"{parts[2]}{parts[1].zfill(2)}{parts[0].zfill(2)}"
             
             invoices[inv_id] = {
                 'invoiceNo': inv_id,
@@ -192,6 +232,9 @@ def parse_creambell_csv(csv_path, tally_stock_items):
         })
 
     return list(invoices.values())
+
+def parse_creambell_csv(csv_path, tally_stock_items):
+    return parse_creambell_file(csv_path, tally_stock_items)
 
 def build_masters_xml(invoices, company="ANAND MANGAL_FY26-27"):
     customers = {}
@@ -564,10 +607,21 @@ def import_csv_to_tally(csv_file, tally_ip="192.168.10.110", tally_port=9000, co
     print(f"   [!] Failed to Import      : {fail_count} vouchers")
     print("=" * 65 + "\n")
 
+def detect_default_tally_ip():
+    for test_ip in ["127.0.0.1", "192.168.10.110"]:
+        try:
+            r = requests.get(f"http://{test_ip}:9000", timeout=0.6)
+            if r.status_code == 200:
+                return test_ip
+        except Exception:
+            pass
+    return "127.0.0.1"
+
 def main():
-    parser = argparse.ArgumentParser(description="Cream Bell CSV to Tally Automatic Importer")
-    parser.add_argument("--file", help="Path to Cream Bell CSV file")
-    parser.add_argument("--tally-ip", default="192.168.10.110", help="Tally PC IP (default: 192.168.10.110)")
+    detected_ip = detect_default_tally_ip()
+    parser = argparse.ArgumentParser(description="Cream Bell CSV / Excel to Tally Automatic Importer")
+    parser.add_argument("--file", help="Path to Cream Bell CSV or Excel file")
+    parser.add_argument("--tally-ip", default=detected_ip, help=f"Tally PC IP (default: {detected_ip})")
     parser.add_argument("--tally-port", type=int, default=9000, help="Tally Port (default: 9000)")
     parser.add_argument("--company", default="ANAND MANGAL_FY26-27", help="Tally Company")
     parser.add_argument("--batch-size", type=int, default=5, help="Batch size (default: 5)")
@@ -576,33 +630,36 @@ def main():
 
     csv_file = args.file
     if not csv_file:
-        # Auto-detect CSV files in current folder or parent
         cb_dir = os.path.dirname(__file__)
-        csv_candidates = glob.glob(os.path.join(cb_dir, "*.csv"))
-        if not csv_candidates:
-            csv_candidates = glob.glob(os.path.join(os.path.dirname(cb_dir), "*.csv"))
+        patterns = ["*.csv", "*.xlsx", "*.xlsm"]
+        file_candidates = []
+        for p in patterns:
+            file_candidates.extend(glob.glob(os.path.join(cb_dir, p)))
+        if not file_candidates:
+            for p in patterns:
+                file_candidates.extend(glob.glob(os.path.join(os.path.dirname(cb_dir), p)))
             
-        if not csv_candidates:
-            print("❌ No CSV files found. Please place your Cream Bell CSV here and run again.")
+        if not file_candidates:
+            print("❌ No CSV or Excel (.xlsx) files found. Please place your Cream Bell sales file here and run again.")
             return
 
         # Sort by modification time, newest first
-        csv_candidates.sort(key=lambda x: os.path.getmtime(x), reverse=True)
-        if len(csv_candidates) == 1:
-            csv_file = csv_candidates[0]
+        file_candidates.sort(key=lambda x: os.path.getmtime(x), reverse=True)
+        if len(file_candidates) == 1:
+            csv_file = file_candidates[0]
         else:
-            print("\n📋 Available Cream Bell CSV files:")
-            for idx, c in enumerate(csv_candidates[:5], 1):
+            print("\n📋 Available Cream Bell Sales Files:")
+            for idx, c in enumerate(file_candidates[:5], 1):
                 print(f"  [{idx}] {os.path.basename(c)}")
-            prompt = f"\n👉 Select CSV [1-{min(5, len(csv_candidates))}] or press ENTER for latest [{os.path.basename(csv_candidates[0])}]: "
+            prompt = f"\n👉 Select File [1-{min(5, len(file_candidates))}] or press ENTER for latest [{os.path.basename(file_candidates[0])}]: "
             try:
                 choice = input(prompt).strip()
             except EOFError:
                 choice = ""
-            if choice.isdigit() and 1 <= int(choice) <= len(csv_candidates):
-                csv_file = csv_candidates[int(choice) - 1]
+            if choice.isdigit() and 1 <= int(choice) <= len(file_candidates):
+                csv_file = file_candidates[int(choice) - 1]
             else:
-                csv_file = csv_candidates[0]
+                csv_file = file_candidates[0]
 
     import_csv_to_tally(
         csv_file=csv_file,
