@@ -427,7 +427,17 @@ def main():
         sys.exit(1)
 
     with open(args.json, encoding="utf-8") as f:
-        invoices = json.load(f)
+        raw_invoices = json.load(f)
+
+    # STRICT FILTER: Exclude cancelled bills so they never enter Tally
+    invoices = [
+        inv for inv in raw_invoices 
+        if str(inv.get('status', '')).lower() != 'cancelled' 
+        and str(inv.get('editStatus', '')).lower() != 'cancelled'
+    ]
+    cancelled_count = len(raw_invoices) - len(invoices)
+    if cancelled_count > 0:
+        print(f"🚫 Filtered out {cancelled_count} cancelled invoices (will not import to Tally).")
 
     print(f"\n=============================================================")
     print(f"🚀 Tally Sales Voucher & Masters Auto-Sync Pipeline")
